@@ -1,0 +1,17 @@
+[project]
+name = "coderun"
+version = "0.1.0"
+description = "A code runner for multiple language"
+readme = "README.md"
+authors = [
+    { name = "rozari0", email = "rozario@disroot.org" }
+]
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+coderun = "coderun:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
