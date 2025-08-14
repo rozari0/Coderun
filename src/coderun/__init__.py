@@ -1,6 +1,6 @@
 #!/bin/env python
 import argparse
-from os import system
+from subprocess import run
 
 parser = argparse.ArgumentParser(
     prog="coderun",
@@ -18,21 +18,21 @@ filename = complete_filename[0 : (-1 - len(file_extension))]
 
 # print(complete_filename,file_extension, filename)
 def run_cpp(complete_filename: str, filename: str, file_extension: str):
-    system(f"g++ {complete_filename} -o {filename}")
-    system(f"./{filename}")
-    system(f"rm {filename}")
+    run(["g++", complete_filename, "-o", filename])
+    run(["./" + filename])
+    run(["rm", filename])
 
 
 def run_c(complete_filename: str, filename: str, file_extension: str):
-    system(f"g++ {complete_filename} -o {filename}")
-    system(f"./{filename}")
-    system(f"rm {filename}")
+    run(["gcc", complete_filename, "-o", filename])
+    run(["./" + filename])
+    run(["rm", filename])
 
 
 def run_java(complete_filename: str, filename: str, file_extension: str):
-    system(f"javac {complete_filename}")
-    system(f"java {filename}")
-    system(f"rm {filename}.class")
+    run(["javac", complete_filename])
+    run(["java", filename])
+    run(["rm", f"{filename}.class"])
 
 
 def main() -> None:
