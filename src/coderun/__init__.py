@@ -9,14 +9,12 @@ parser = argparse.ArgumentParser(
 parser.add_argument("filename")
 
 args = parser.parse_args()
-# print(args.filename)
 
-complete_filename = args.filename.replace(" ", "\\ ")
-file_extension = complete_filename.split(".")[-1]
-filename = complete_filename[0 : (-1 - len(file_extension))]
+complete_filename: str = args.filename.replace(" ", "\\ ")
+file_extension: str = complete_filename.split(".")[-1]
+filename: str = complete_filename[0 : (-1 - len(file_extension))]
 
 
-# print(complete_filename,file_extension, filename)
 def run_cpp(complete_filename: str, filename: str, file_extension: str):
     run(["g++", complete_filename, "-o", filename])
     run(["./" + filename])
@@ -35,6 +33,10 @@ def run_java(complete_filename: str, filename: str, file_extension: str):
     run(["rm", f"{filename}.class"])
 
 
+def run_py(complete_filename: str):
+    run(["python3", complete_filename])
+
+
 def main() -> None:
     if file_extension == "cpp":
         run_cpp(complete_filename, filename, file_extension)
@@ -42,3 +44,5 @@ def main() -> None:
         run_c(complete_filename, filename, file_extension)
     elif file_extension == "java":
         run_java(complete_filename, filename, file_extension)
+    elif file_extension.lower() == "py":
+        run_py(complete_filename)
