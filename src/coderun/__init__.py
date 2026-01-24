@@ -30,9 +30,9 @@ def run_cpp(
 ):
     if input_file:
         with open(input_file, "r") as input_file:
-            run(["g++", complete_filename, "-o", filename], stdin=input_file)
+            run(["g++", complete_filename, "-o", filename, "-lglut", "-lGL", "-lGLU"], stdin=input_file)
     else:
-        run(["g++", complete_filename, "-o", filename])
+        run(["g++", complete_filename, "-o", filename, "-lglut", "-lGL", "-lGLU"])
     run(["./" + filename])
     run(["rm", filename])
 
