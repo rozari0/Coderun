@@ -28,11 +28,13 @@ def run_cpp(
     file_extension: str,
     input_file: str | None = None,
 ):
+    run(["g++", complete_filename, "-o", filename, "-lglut", "-lGL", "-lGLU"])
     if input_file:
-        with open(input_file, "r") as input_file:
-            run(["g++", complete_filename, "-o", filename, "-lglut", "-lGL", "-lGLU"], stdin=input_file)
+        with open(input_file, "r") as file:
+            run(["./" + filename], stdin=file)
     else:
-        run(["g++", complete_filename, "-o", filename, "-lglut", "-lGL", "-lGLU"])
+        run(["./" + filename])
+
     run(["./" + filename])
     run(["rm", filename])
 
@@ -43,12 +45,12 @@ def run_c(
     file_extension: str,
     input_file: str | None = None,
 ):
+    run(["gcc", complete_filename, "-o", filename])
     if input_file:
-        with open(input_file, "r") as input_file:
-            run(["gcc", complete_filename, "-o", filename], stdin=input_file)
+        with open(input_file, "r") as file:
+            run(["./" + filename], stdin=file)
     else:
         run(["gcc", complete_filename, "-o", filename])
-    run(["./" + filename])
     run(["rm", filename])
 
 
@@ -58,19 +60,19 @@ def run_java(
     file_extension: str,
     input_file: str | None = None,
 ):
+    run(["javac", complete_filename])
     if input_file:
-        with open(input_file, "r") as input_file:
-            run(["javac", complete_filename], stdin=input_file)
+        with open(input_file, "r") as file:
+            run(["java", filename], stdin=file)
     else:
-        run(["javac", complete_filename])
-    run(["java", filename])
+        run(["java", filename])
     run(["rm", f"{filename}.class"])
 
 
 def run_py(complete_filename: str, input_file: str | None = None):
     if input_file:
-        with open(input_file, "r") as input_file:
-            run(["python3", complete_filename], stdin=input_file)
+        with open(input_file, "r") as file:
+            run(["python3", complete_filename], stdin=file)
     else:
         run(["python3", complete_filename])
 

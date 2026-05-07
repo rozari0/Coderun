@@ -1,6 +1,6 @@
 [project]
 name = "coderun"
-version = "1.0.0"
+version = "1.1.0"
 description = "A code runner for multiple language"
 readme = "README.md"
 authors = [
@@ -13,5 +13,5 @@ dependencies = []
 coderun = "coderun:main"
 
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["uv_build>=0.10.0,<0.11.0"]
+build-backend = "uv_build"
