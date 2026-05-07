@@ -35,7 +35,6 @@ def run_cpp(
     else:
         run(["./" + filename])
 
-    run(["./" + filename])
     run(["rm", filename])
 
 
