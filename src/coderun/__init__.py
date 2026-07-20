@@ -49,7 +49,7 @@ def run_c(
         with open(input_file, "r") as file:
             run(["./" + filename], stdin=file)
     else:
-        run(["gcc", complete_filename, "-o", filename])
+        run(["./" + filename])
     run(["rm", filename])
 
 
